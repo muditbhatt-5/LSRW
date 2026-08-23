@@ -73,7 +73,7 @@ const Login = () => {
                   id="UserEmail"
                   type="email"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#159FFC] focus:border-[#159FFC]"
+                  className="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#159FFC] focus:border-[#159FFC]"
                   value={UserEmail}
                   onChange={(e) => setUserEmail(e.target.value)}
                 />
@@ -86,7 +86,7 @@ const Login = () => {
                   id="Password"
                   type="password"
                   required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#159FFC] focus:border-[#159FFC]"
+                  className="mt-1 block w-full px-3 py-2 bg-white text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#159FFC] focus:border-[#159FFC]"
                   value={Password}
                   onChange={(e) => setPassword(e.target.value)}
                 />

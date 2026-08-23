@@ -21,10 +21,6 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-[#000814] text-slate-100 selection:bg-cyan-500 selection:text-white relative overflow-hidden font-sans">
-          {/* Ambient 3D Glow Backdrops */}
-          <div className="ambient-glow-1 top-[-100px] left-[-100px]" />
-          <div className="ambient-glow-2 bottom-[-100px] right-[-100px]" />
-
           <Routes>
             {/* Public routes */}
             <Route path="/login" element={<Login />} />

@@ -4892,11 +4892,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\LSRW_Backend.csproj",
+      "projectUniqueName": "E:\\Running Project\\LSRW\\Backend\\LSRW_Backend.csproj",
       "projectName": "LSRW_Backend",
-      "projectPath": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\LSRW_Backend.csproj",
+      "projectPath": "E:\\Running Project\\LSRW\\Backend\\LSRW_Backend.csproj",
       "packagesPath": "C:\\Users\\MUDIT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\obj\\",
+      "outputPath": "E:\\Running Project\\LSRW\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
