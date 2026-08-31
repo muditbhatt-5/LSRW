@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LSRW_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e67b321ea02775b533c1d926cb8dfb1e0ad0549f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f95447c7a08a6ea2de83dc5052664eecf84af4f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("LSRW_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LSRW_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

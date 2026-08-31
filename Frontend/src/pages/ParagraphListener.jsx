@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Mic, MicOff } from "lucide-react";
+import { ArrowLeft, Mic, MicOff, CheckCircle2, Award, Sparkles, Send } from "lucide-react";
 import "./DashboardDesign.css";
 import levenshtein from "fast-levenshtein";
 
@@ -33,10 +33,10 @@ const ParagraphListener = () => {
       .trim();
   };
 
-  // Levenshtein for word match (allow 1-2 edit distance based on word length)
+  // Levenshtein for word match
   const levenshteinMatch = (inputWord, targetWord) => {
     const distance = levenshtein.get(inputWord, targetWord);
-    const maxAllowedDistance = Math.max(1, Math.floor(targetWord.length / 4)); // Dynamic threshold based on word length
+    const maxAllowedDistance = Math.max(1, Math.floor(targetWord.length / 4));
     return distance <= maxAllowedDistance ? targetWord : inputWord;
   };
 
@@ -44,8 +44,8 @@ const ParagraphListener = () => {
     if ("webkitSpeechRecognition" in window) {
       const recognition = new window.webkitSpeechRecognition();
       recognitionRef.current = recognition;
-      recognition.continuous = true; // Allow continuous speech
-      recognition.interimResults = true; // Show partial results
+      recognition.continuous = true;
+      recognition.interimResults = true;
       recognition.lang = "en-US";
 
       recognition.onstart = () => {
@@ -55,7 +55,6 @@ const ParagraphListener = () => {
       };
 
       recognition.onresult = (event) => {
-        // Get the last result only to avoid duplicates
         const transcript = Array.from(event.results)
           .map((result) => result[0].transcript)
           .join(" ")
@@ -63,7 +62,6 @@ const ParagraphListener = () => {
 
         const words = cleanText(transcript).split(" ");
 
-        // Match spoken words to paragraph words with fuzzy matching
         const correctedWords = words.map((word, index) => {
           if (index < paragraphWordsRef.current.length) {
             return levenshteinMatch(word, paragraphWordsRef.current[index]);
@@ -72,8 +70,6 @@ const ParagraphListener = () => {
         });
 
         setSpokenWords(correctedWords);
-
-        // Reset silence timeout for slow speakers
         resetSilenceTimeout();
       };
 
@@ -100,22 +96,21 @@ const ParagraphListener = () => {
     }
   };
 
-  // Reset silence timeout to allow more time for slow speakers
   const resetSilenceTimeout = () => {
     clearTimeout(silenceTimeoutRef.current);
     silenceTimeoutRef.current = setTimeout(() => {
-      stopListening(); // Stop after 10 seconds of silence
-    }, 10000); // Increased timeout to 10 seconds
+      stopListening();
+    }, 10000);
   };
 
   // Compare and assign colors in real-time
   const compareWords = (word, index) => {
     if (index < spokenWords.length) {
       return word.toLowerCase() === spokenWords[index].toLowerCase()
-        ? "text-green-500"
-        : "text-red-500";
+        ? "text-emerald-400 font-semibold drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+        : "text-rose-400 font-semibold drop-shadow-[0_0_8px_rgba(251,113,113,0.5)]";
     }
-    return "text-gray-800";
+    return "text-slate-300";
   };
 
   const calculateAccuracy = () => {
@@ -188,63 +183,111 @@ const ParagraphListener = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="w-full max-w-4xl h-[700px] flex rounded-lg overflow-hidden shadow-2xl">
-        <div className="w-1/2 bg-[#159FFC] opacity-20"></div>
-        <div className="w-1/2 bg-white p-8 overflow-y-auto">
+    <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+      {/* Ambient Lighting Orbs */}
+      <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
+      <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
+
+      {/* Glass Panel Container */}
+      <div className="w-full max-w-5xl glass-panel-3d p-6 sm:p-8 lg:p-10 relative z-10 flex flex-col min-h-[640px]">
+        
+        {/* Navigation & Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 gap-4 mb-6">
           <button
             onClick={() => navigate("/dashboard")}
-            className="flex items-center text-[#159FFC] mb-6"
+            className="btn-3d-glass px-4 py-2 flex items-center text-xs font-semibold uppercase tracking-wider text-sky-400 group"
           >
-            <ArrowLeft className="w-5 h-5 mr-2" />
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Dashboard
           </button>
 
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">
-            Paragraph Listener
-          </h1>
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/20 border border-white/20">
+              <Mic className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-white">Paragraph Listener</h1>
+              <p className="text-xs text-slate-400">Speak aloud to evaluate pronunciation accuracy</p>
+            </div>
+          </div>
+        </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-            <p className="text-gray-800 text-sm mb-6 paragraph-box">
+        {/* Interactive Speech Card */}
+        <div className="glass-card-3d p-6 flex flex-col justify-between flex-1 space-y-6">
+          
+          {/* Paragraph Speech Display Box */}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-sky-400 flex items-center space-x-1.5">
+                <Sparkles className="w-4 h-4" />
+                <span>Target Paragraph</span>
+              </span>
+              {isListening && (
+                <span className="flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold animate-pulse">
+                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+                  <span>Listening Active...</span>
+                </span>
+              )}
+            </div>
+
+            <div className="paragraph-box text-base leading-relaxed font-sans bg-slate-950/60 p-6 rounded-xl border border-white/10 shadow-inner min-h-[160px]">
               {paragraph.split(" ").map((word, index) => (
                 <span
                   key={index}
-                  className={`${compareWords(word, index)} mx-1`}
+                  className={`${compareWords(word, index)} inline-block mx-1 transition-colors duration-200`}
                 >
                   {word}
                 </span>
               ))}
-            </p>
+            </div>
+          </div>
 
-            <button
-              onClick={isListening ? stopListening : startListening}
-              className={`flex items-center px-4 py-2 rounded-md ${isListening
-                ? "bg-red-500 hover:bg-red-600"
-                : "bg-[#159FFC] hover:bg-[#0b8ee6]"
-                } text-white text-sm mb-4`}
-            >
-              {isListening ? (
-                <>
-                  <MicOff className="w-4 h-4 mr-2" /> Stop Listening
-                </>
-              ) : (
-                <>
-                  <Mic className="w-4 h-4 mr-2" /> Start Listening
-                </>
-              )}
-            </button>
+          {/* Action Buttons & Result Bar */}
+          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-4 w-full sm:w-auto">
+              <button
+                onClick={isListening ? stopListening : startListening}
+                className={`py-3 px-6 rounded-xl flex items-center justify-center space-x-2 text-sm font-semibold text-white transition-all shadow-lg w-full sm:w-auto ${
+                  isListening
+                    ? "btn-3d-danger animate-pulse"
+                    : "btn-3d-cyan"
+                }`}
+              >
+                {isListening ? (
+                  <>
+                    <MicOff className="w-5 h-5" />
+                    <span>Stop Recording</span>
+                  </>
+                ) : (
+                  <>
+                    <Mic className="w-5 h-5" />
+                    <span>Start Speaking</span>
+                  </>
+                )}
+              </button>
 
-            <button onClick={handleSubmit} className="custom-button">
-              Submit
-            </button>
+              <button
+                onClick={handleSubmit}
+                className="custom-button px-6 py-3 text-sm font-semibold flex items-center space-x-2"
+              >
+                <Send className="w-4 h-4" />
+                <span>Submit</span>
+              </button>
+            </div>
 
             {accuracy !== null && (
-              <p className="text-lg font-bold text-gray-900 mt-4">
-                Accuracy: {accuracy}%
-              </p>
+              <div className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-950/60 to-slate-900/60 border border-emerald-500/40 text-emerald-400 flex items-center space-x-3 shadow-lg">
+                <Award className="w-6 h-6 text-emerald-400" />
+                <div>
+                  <span className="text-xs text-slate-400 block font-medium">Evaluation Score</span>
+                  <span className="text-lg font-extrabold text-white">{accuracy}% Accuracy</span>
+                </div>
+              </div>
             )}
           </div>
+
         </div>
+
       </div>
     </div>
   );

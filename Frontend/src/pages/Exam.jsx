@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Download } from 'lucide-react';
+import { ArrowLeft, Download, PenTool, Clock, Award, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import axios from 'axios';
 
@@ -80,33 +80,63 @@ const Exam = () => {
     doc.save('exam-results.pdf');
   };
 
+  // Screen 1: Countdown Timer Screen
   if (!examStarted) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="w-full max-w-4xl h-[600px] flex rounded-lg overflow-hidden shadow-2xl">
-          <div className="w-1/2 bg-[#159FFC] opacity-20"></div>
-          <div className="w-1/2 flex items-center justify-center bg-white">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold mb-4">Get Ready for Exam</h1>
-              <p className="text-xl mb-6">All the best!</p>
-              <div className="text-6xl font-bold text-[#159FFC]">{timer}</div>
-            </div>
+      <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
+        <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
+
+        <div className="w-full max-w-2xl glass-panel-3d p-8 sm:p-12 text-center relative z-10 space-y-6">
+          <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-xl shadow-sky-500/30 border border-white/20">
+            <Clock className="w-10 h-10 text-white animate-bounce" />
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Get Ready for Exam</h1>
+          <p className="text-slate-300 text-sm">Your assessment will begin automatically in a few seconds. All the best!</p>
+
+          <div className="py-6">
+            <span className="text-7xl font-extrabold text-gradient-cyan tracking-wider drop-shadow-lg">
+              {timer}
+            </span>
           </div>
         </div>
       </div>
     );
   }
 
+  // Screen 2: Exam Results Completed View
   if (examCompleted) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg text-center">
-          <h2 className="text-2xl font-bold mb-4">Exam Completed!</h2>
-          <p className="text-lg mb-4">Your Score: {score}%</p>
-          <button className="downloadBtn" onClick={downloadResult}>
-            <Download className="w-5 h-5 mr-2" />
-            Download Results
-          </button>
+      <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
+        <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
+
+        <div className="w-full max-w-xl glass-panel-3d p-8 sm:p-10 text-center relative z-10 space-y-6">
+          <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-xl shadow-emerald-500/30 border border-white/20">
+            <Award className="w-10 h-10 text-white" />
+          </div>
+
+          <h2 className="text-3xl font-extrabold text-white">Exam Completed!</h2>
+          
+          <div className="p-6 rounded-2xl bg-slate-950/60 border border-emerald-500/30">
+            <span className="text-xs uppercase tracking-wider font-semibold text-slate-400 block mb-1">Final Score</span>
+            <span className="text-5xl font-black text-emerald-400">{score.toFixed(1)}%</span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <button className="downloadBtn" onClick={downloadResult}>
+              <Download className="w-5 h-5 mr-2" />
+              Download Results PDF
+            </button>
+
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="btn-3d-glass px-6 py-3 text-sm font-semibold flex items-center justify-center"
+            >
+              Back to Dashboard
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -116,57 +146,102 @@ const Exam = () => {
   const endIndex = Math.min(startIndex + questionsPerPage, questions.length);
   const currentQuestions = questions.slice(startIndex, endIndex);
 
+  // Screen 3: Main Exam Questions View
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-6">LSRW EXAM!</h1>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
-        {currentQuestions.map((question) => (
-          <div key={question.mcqID} className="mb-6">
-            <p className="font-medium mb-3">{question.question}</p>
-            <div className="space-y-2">
-              {[question.optionA, question.optionB, question.optionC, question.optionD].map(
-                (option) => (
-                  <label
-                    key={option}
-                    className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50"
-                  >
-                    <input
-                      type="radio"
-                      name={`question-${question.mcqID}`}
-                      value={option}
-                      checked={answers[question.mcqID] === option}
-                      onChange={() => handleAnswerSelect(question.mcqID, option)}
-                      className="form-radio text-[#159FFC]"
-                    />
-                    <span>{option}</span>
-                  </label>
-                )
-              )}
+    <div className="min-h-screen relative flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+      <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
+      <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
+
+      <div className="w-full max-w-4xl glass-panel-3d p-6 sm:p-8 lg:p-10 relative z-10 flex flex-col min-h-[640px]">
+        
+        {/* Navigation & Header */}
+        <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="btn-3d-glass px-4 py-2 flex items-center text-xs font-semibold uppercase tracking-wider text-sky-400 group"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back
+          </button>
+
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/20 border border-white/20">
+              <PenTool className="w-5 h-5 text-white" />
             </div>
+            <h1 className="text-xl font-extrabold text-white tracking-wide">LSRW EXAM ASSESSMENT</h1>
           </div>
-        ))}
-        <div className="flex justify-between items-center mt-6">
+        </div>
+
+        {/* Questions Listing */}
+        <div className="flex-1 overflow-y-auto pr-2 space-y-6">
+          {currentQuestions.map((question, qIdx) => (
+            <div key={question.mcqID} className="glass-card-3d p-6 border-white/10 hover:border-sky-500/30">
+              <p className="text-base font-semibold text-white mb-4 flex items-start space-x-2">
+                <span className="text-sky-400 font-mono">Q{startIndex + qIdx + 1}.</span>
+                <span>{question.question}</span>
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[question.optionA, question.optionB, question.optionC, question.optionD].map((option) => {
+                  const isChecked = answers[question.mcqID] === option;
+                  return (
+                    <label
+                      key={option}
+                      className={`flex items-center space-x-3 p-3.5 rounded-xl border transition-all cursor-pointer ${
+                        isChecked
+                          ? 'bg-sky-500/20 border-sky-400 text-white shadow-lg shadow-sky-500/10'
+                          : 'bg-slate-950/40 border-white/10 text-slate-300 hover:border-sky-500/30 hover:bg-slate-900/40'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`question-${question.mcqID}`}
+                        value={option}
+                        checked={isChecked}
+                        onChange={() => handleAnswerSelect(question.mcqID, option)}
+                        className="w-4 h-4 text-sky-400 accent-sky-400"
+                      />
+                      <span className="text-sm font-medium">{option}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination & Submit Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-6 pt-6 border-t border-white/10 gap-4">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+            className="btn-3d-glass px-5 py-2.5 text-xs font-semibold uppercase tracking-wider flex items-center space-x-1 disabled:opacity-40"
             disabled={currentPage === 0}
           >
-            Previous
+            <ChevronLeft className="w-4 h-4" />
+            <span>Previous</span>
           </button>
-          <span className="font-medium">Page {currentPage + 1} of {Math.ceil(questions.length / questionsPerPage)}</span>
+
+          <span className="text-xs font-semibold text-slate-400 tracking-wider">
+            Page <span className="text-sky-400">{currentPage + 1}</span> of {Math.ceil(questions.length / questionsPerPage) || 1}
+          </span>
+
           <button
             onClick={() =>
               currentPage < Math.ceil(questions.length / questionsPerPage) - 1
                 ? setCurrentPage((prev) => prev + 1)
                 : handleSubmit()
             }
-            className="bg-[#159FFC] text-white px-4 py-2 rounded-lg"
+            className="btn-3d-cyan px-6 py-2.5 text-xs font-semibold uppercase tracking-wider flex items-center space-x-1"
           >
-            {currentPage < Math.ceil(questions.length / questionsPerPage) - 1
-              ? 'Next'
-              : 'Submit Exam'}
+            <span>
+              {currentPage < Math.ceil(questions.length / questionsPerPage) - 1
+                ? 'Next Page'
+                : 'Submit Exam'}
+            </span>
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
+
       </div>
     </div>
   );

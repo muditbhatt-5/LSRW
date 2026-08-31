@@ -358,7 +358,6 @@ E:\Running Project\LSRW\Backend\obj\Debug\net8.0\staticwebassets.build.json.cach
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\staticwebassets.development.json
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\swae.build.ex.cache
-E:\Running Project\LSRW\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\LSRW_Bac.851ADB90.Up2Date
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\LSRW_Backend.dll
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\refint\LSRW_Backend.dll

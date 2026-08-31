@@ -1,6 +1,0 @@
-wwwroot\dist\assets\html2canvas.esm-CBrSDip1.js
-wwwroot\dist\assets\index-C2ai9Hfx.css
-wwwroot\dist\assets\index-DQ259n2W.js
-wwwroot\dist\assets\index.es-CFSRe-Jv.js
-wwwroot\dist\assets\purify.es-C_uT9hQ1.js
-wwwroot\dist\index.html

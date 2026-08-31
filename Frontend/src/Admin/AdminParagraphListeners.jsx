@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getParagraphListeners, createParagraphListener, updateParagraphListener, deleteParagraphListener } from '../api';
-import { Pencil, Trash2, Plus } from 'lucide-react';
+import { Pencil, Trash2, Plus, Mic, X } from 'lucide-react';
 
 const AdminParagraphListeners = () => {
   const [listeners, setListeners] = useState([]);
@@ -56,103 +56,152 @@ const AdminParagraphListeners = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Paragraph Listeners</h2>
+    <div className="space-y-6">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-6 border-b border-white/10 gap-4">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/20 border border-white/20">
+            <Mic className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-white tracking-wide">Paragraph Listeners</h2>
+            <p className="text-xs text-slate-400">View voice submissions & evaluation logs</p>
+          </div>
+        </div>
+
         <button
           onClick={() => {
             setSelectedListener(null);
             setFormData({ paragraph_Speak_UserName: '', paragraph_ReadID: 0, userID: 0, accuracy: '' });
             setIsModalOpen(true);
           }}
-          className="bg-[#159FFC] text-white px-4 py-2 rounded-lg flex items-center space-x-2"
+          className="btn-3d-cyan px-5 py-2.5 flex items-center space-x-2 text-sm font-semibold shadow-lg"
         >
-          <Plus size={20} />
-          <span>Add Paragraph Listener</span>
+          <Plus size={18} />
+          <span>Add Listener Entry</span>
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <table className="min-w-full">
+      {/* 3D Glass Data Table */}
+      <div className="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/40 backdrop-blur-md shadow-2xl">
+        <table className="table-3d">
           <thead>
-            <tr className="bg-gray-50">
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speak ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Read ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Accuracy</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            <tr>
+              <th>Speak ID</th>
+              <th>Spoken Transcript</th>
+              <th>Read ID</th>
+              <th>User ID</th>
+              <th>Accuracy Score</th>
+              <th className="text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {listeners.map((listener) => (
-              <tr key={listener.paragraph_SpeakID}>
-                <td className="px-6 py-4 whitespace-nowrap">{listener.paragraph_SpeakID}</td>
-                <td className="px-6 py-4">{listener.paragraph_Speak_UserName}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{listener.paragraph_ReadID}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{listener.userID}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{listener.accuracy}%</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={() => {
-                        setSelectedListener(listener);
-                        setFormData({
-                          paragraph_Speak_UserName: listener.paragraph_Speak_UserName,
-                          paragraph_ReadID: listener.paragraph_ReadID,
-                          userID: listener.userID,
-                          accuracy: listener.accuracy
-                        });
-                        setIsModalOpen(true);
-                      }}
-                      className="text-blue-600 hover:text-blue-900 me-3"
-                    >
-                      <Pencil size={20} />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(listener.paragraph_SpeakID)}
-                      className="text-red-600 hover:text-red-900"
-                    >
-                      <Trash2 size={20} />
-                    </button>
-                  </div>
+          <tbody>
+            {listeners.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-8 text-slate-400">
+                  No listener records found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              listeners.map((listener) => (
+                <tr key={listener.paragraph_SpeakID}>
+                  <td className="font-mono text-xs text-sky-400 font-semibold">#{listener.paragraph_SpeakID}</td>
+                  <td className="text-slate-200 text-sm max-w-md">{listener.paragraph_Speak_UserName}</td>
+                  <td className="font-mono text-xs text-slate-300">{listener.paragraph_ReadID}</td>
+                  <td className="font-mono text-xs text-slate-300">{listener.userID}</td>
+                  <td>
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                      {listener.accuracy}%
+                    </span>
+                  </td>
+                  <td>
+                    <div className="flex space-x-2 justify-end">
+                      <button
+                        onClick={() => {
+                          setSelectedListener(listener);
+                          setFormData({
+                            paragraph_Speak_UserName: listener.paragraph_Speak_UserName,
+                            paragraph_ReadID: listener.paragraph_ReadID,
+                            userID: listener.userID,
+                            accuracy: listener.accuracy
+                          });
+                          setIsModalOpen(true);
+                        }}
+                        className="p-2 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 hover:bg-sky-500/20 hover:text-white transition-colors"
+                        title="Edit Entry"
+                      >
+                        <Pencil size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(listener.paragraph_SpeakID)}
+                        className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 hover:text-white transition-colors"
+                        title="Delete Entry"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
 
+      {/* Modal Dialog */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
-            <h3 className="text-xl font-bold mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="blur-background" onClick={() => setIsModalOpen(false)} />
+          <div className="w-full max-w-lg glass-modal-3d p-6 sm:p-8 relative z-50 text-white animate-in fade-in zoom-in duration-200">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <h3 className="text-xl font-bold text-white mb-6 pb-3 border-b border-white/10">
               {selectedListener ? 'Edit Paragraph Listener' : 'Add Paragraph Listener'}
             </h3>
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">User Name</label>
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Spoken Transcript</label>
                 <input
                   type="text"
                   value={formData.paragraph_Speak_UserName}
                   onChange={(e) => setFormData({ ...formData, paragraph_Speak_UserName: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full px-3.5 py-2.5 input-3d text-sm"
                   required
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700">Accuracy</label>
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Accuracy Score</label>
                 <input
                   type="text"
                   value={formData.accuracy}
                   onChange={(e) => setFormData({ ...formData, accuracy: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full px-3.5 py-2.5 input-3d text-sm"
                   required
                 />
               </div>
-              <button type="submit" className="px-4 py-2 bg-[#159FFC] text-white rounded-md hover:bg-blue-600">
-                {selectedListener ? 'Update' : 'Create'}
-              </button>
+
+              <div className="flex justify-end space-x-3 pt-4 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="btn-3d-glass px-4 py-2 text-xs font-semibold"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn-3d-cyan px-5 py-2 text-xs font-semibold"
+                >
+                  {selectedListener ? 'Update Listener' : 'Create Listener'}
+                </button>
+              </div>
             </form>
           </div>
         </div>

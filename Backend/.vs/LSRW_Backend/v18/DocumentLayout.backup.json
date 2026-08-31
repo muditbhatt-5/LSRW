@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\",
+  "WorkspaceRootPath": "E:\\Running Project\\LSRW\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|c:\\users\\mudit\\source\\repos\\lsrw_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|e:\\running project\\lsrw\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|c:\\users\\mudit\\source\\repos\\lsrw_backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|e:\\running project\\lsrw\\backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\Controllers\\UserController.cs",
+              "DocumentMoniker": "E:\\Running Project\\LSRW\\Backend\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\Controllers\\UserController.cs",
+              "ToolTip": "E:\\Running Project\\LSRW\\Backend\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -41,9 +41,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\appsettings.json",
+              "DocumentMoniker": "E:\\Running Project\\LSRW\\Backend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\MUDIT\\source\\repos\\LSRW_Backend\\appsettings.json",
+              "ToolTip": "E:\\Running Project\\LSRW\\Backend\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
