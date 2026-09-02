@@ -1,4 +1,4 @@
-﻿using LSRW_Backend.Models;
+using LSRW_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -148,12 +148,20 @@ namespace LSRW_Backend.Data
                     };
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        throw new Exception("This user cannot be deleted because they have associated records in the system (e.g. Exams).");
+                    }
+                    throw new Exception("An error occurred while deleting the user from the database.");
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    throw new Exception(ex.Message);
                 }
             }
         }

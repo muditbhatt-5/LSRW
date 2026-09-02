@@ -1,4 +1,4 @@
-﻿using LSRW_Backend.Data;
+using LSRW_Backend.Data;
 using LSRW_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -77,11 +77,18 @@ namespace LSRW_Backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var isDeleted = _userRepository.Delete(id);
-            if (!isDeleted)
-                return NotFound("User not found.");
+            try
+            {
+                var isDeleted = _userRepository.Delete(id);
+                if (!isDeleted)
+                    return NotFound(new { message = "User not found." });
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
         #endregion
 

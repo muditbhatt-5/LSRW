@@ -10,7 +10,6 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
     { label: 'Paragraph Readers', path: '/admin/admin-paragraph-readers', icon: BookOpen },
     { label: 'Paragraph Listeners', path: '/admin/admin-paragraph-listeners', icon: Mic },
     { label: 'MCQs', path: '/admin/mcqs', icon: HelpCircle },
-    { label: 'User Panel', path: '/dashboard', icon: LayoutDashboard },
   ];
 
   const isLinkActive = (item) => {
@@ -32,7 +31,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
       {/* Sidebar Container */}
       <aside
-        className={`w-72 min-h-screen p-5 flex flex-col justify-between z-40 transition-transform duration-300 ${
+        className={`w-72 h-screen p-5 flex flex-col justify-between z-40 transition-transform duration-300 ${
           mobileOpen ? 'translate-x-0 fixed top-0 left-0 bottom-0 bg-[#071124]' : '-translate-x-full md:translate-x-0 relative'
         } border-r border-sky-500/20 bg-slate-950/70 backdrop-blur-xl`}
       >
@@ -43,7 +42,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
               <ShieldCheck className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-extrabold text-white tracking-wide">Admin Portal</h2>
+              <h2 className="text-lg font-extrabold text-white tracking-wide">Backoffice</h2>
               <div className="flex items-center space-x-1.5 text-[11px] text-sky-400 font-medium">
                 <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping" />
                 <span>System Console</span>

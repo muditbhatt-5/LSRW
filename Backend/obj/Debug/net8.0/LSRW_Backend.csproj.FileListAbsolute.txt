@@ -364,3 +364,4 @@ E:\Running Project\LSRW\Backend\obj\Debug\net8.0\refint\LSRW_Backend.dll
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\LSRW_Backend.pdb
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\LSRW_Backend.genruntimeconfig.cache
 E:\Running Project\LSRW\Backend\obj\Debug\net8.0\ref\LSRW_Backend.dll
+E:\Running Project\LSRW\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

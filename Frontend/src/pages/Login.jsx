@@ -9,7 +9,7 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login, token } = useAuth();
+  const { login, token, user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,16 +24,16 @@ const Login = () => {
       if (response.data?.token) {
         const { userID, userName, userEmail, userMobile, userImage, enrollment, token, role, userAccess } = response.data;
 
-        if (role === "admin") {
+        if (userAccess === "inactive" || userAccess?.toLowerCase() === "inactive") {
+          setError("Your account has been inactived so contanct to your adminstrator");
+          return;
+        }
+
+        if (role === "user") {
           login({ userID, userName, userEmail, userMobile, userImage, enrollment }, token);
-          navigate("/admin");
-        } else if (role === "user") {
-          if (userAccess === "active") {
-            login({ userID, userName, userEmail, userMobile, userImage, enrollment }, token);
-            navigate("/dashboard");
-          } else {
-            setError("User is not active. Please contact admin.");
-          }
+          navigate("/dashboard");
+        } else if (role === "admin") {
+          setError("Admin access has moved. Please use the Backoffice portal.");
         } else {
           setError("Invalid role. Access denied.");
         }
@@ -47,9 +47,11 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/dashboard");
+      if (user && user.role === 'user') {
+        navigate("/dashboard");
+      }
     }
-  }, [token, navigate]);
+  }, [token, user, navigate]);
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
@@ -61,7 +63,7 @@ const Login = () => {
       <div className="w-full max-w-4xl cyan-panel-3d overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px] relative z-10">
         
         {/* Left Side: 3D Visual Branding Section */}
-        <div className="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent">
+        <div className="lg:col-span-6 py-5 px-8 lg:py-6 lg:px-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent">
           <div>
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-8 shadow-inner">
               <Sparkles className="w-4 h-4 animate-spin-slow" />
@@ -101,7 +103,7 @@ const Login = () => {
         </div>
 
         {/* Right Side: Glass Login Form */}
-        <div className="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-center bg-transparent">
+        <div className="lg:col-span-6 py-5 px-8 lg:py-6 lg:px-12 flex flex-col justify-center bg-transparent">
           <div className="w-full max-w-md mx-auto">
             <div className="text-center mb-8">
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/30 border border-white/20">

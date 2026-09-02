@@ -63,7 +63,7 @@ const Signup = () => {
       <div className="w-full max-w-4xl cyan-panel-3d overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[500px] relative z-10">
         
         {/* Left Side: 3D Visual Section */}
-        <div className="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent">
+        <div className="lg:col-span-6 py-5 px-8 lg:py-6 lg:px-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-white/10 bg-transparent">
           <div>
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-8 shadow-inner">
               <Sparkles className="w-4 h-4" />
@@ -97,7 +97,7 @@ const Signup = () => {
         </div>
 
         {/* Right Side: Form Container */}
-        <div className="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-center bg-transparent">
+        <div className="lg:col-span-6 py-5 px-8 lg:py-6 lg:px-12 flex flex-col justify-center bg-transparent">
           <div className="w-full max-w-md mx-auto">
             <div className="text-center mb-8">
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/30 border border-white/20">

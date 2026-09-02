@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "E:\\Running Project\\LSRW\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MUDIT\\AppData\\Local\\SourceServer\\5652abe6c8bb010f72f7a5ed43587f39655b37e281ac7a59505cea8b987f7ee3\\Backend\\Data\\UserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|e:\\running project\\lsrw\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{F1BCF143-B003-46A7-8DE9-4675CFD3BFEA}|LSRW_Backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -21,8 +24,12 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "E:\\Running Project\\LSRW\\Backend\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -34,18 +41,25 @@
               "IsPinned": true
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\MUDIT\\AppData\\Local\\SourceServer\\5652abe6c8bb010f72f7a5ed43587f39655b37e281ac7a59505cea8b987f7ee3\\Backend\\Data\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\MUDIT\\AppData\\Local\\SourceServer\\5652abe6c8bb010f72f7a5ed43587f39655b37e281ac7a59505cea8b987f7ee3\\Backend\\Data\\UserRepository.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAawJsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T15:13:06.064Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\Running Project\\LSRW\\Backend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "E:\\Running Project\\LSRW\\Backend\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-05-29T08:17:50.659Z",
               "EditorCaption": ""

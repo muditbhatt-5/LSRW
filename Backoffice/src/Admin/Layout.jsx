@@ -7,14 +7,14 @@ const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen relative flex flex-col md:flex-row overflow-hidden bg-[#070c17]">
+    <div className="h-screen relative flex flex-col md:flex-row overflow-hidden bg-[#070c17]">
       {/* Mobile Top Navigation Bar */}
       <div className="md:hidden flex items-center justify-between p-4 glass-card-3d-static rounded-none border-b border-white/10 z-30">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center">
             <Shield className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold text-white tracking-wider text-sm">ADMIN CONTROL</span>
+          <span className="font-bold text-white tracking-wider text-sm">BACKOFFICE</span>
         </div>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -28,7 +28,7 @@ const Layout = () => {
       <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
       {/* Main Admin Workspace Area */}
-      <main className="flex-1 p-6 sm:p-8 lg:p-10 relative z-10 overflow-y-auto min-h-screen bg-[#090f23]/30">
+      <main className="flex-1 p-6 sm:p-8 lg:p-10 relative z-10 overflow-y-auto h-screen bg-[#090f23]/30">
         <div className="max-w-7xl mx-auto">
           <Outlet />
         </div>

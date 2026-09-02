@@ -40,37 +40,7 @@ const ParagraphReader = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
-      {/* Ambient Lighting Orbs */}
-      <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
-      <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
-
-      {/* Glass Workstation Panel */}
-      <div className="w-full max-w-5xl glass-panel-3d p-6 sm:p-8 lg:p-10 relative z-10 flex flex-col min-h-[640px] max-h-[85vh]">
-        
-        {/* Navigation & Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 gap-4 mb-6">
-          <button
-            onClick={() => navigate('/dashboard')}
-            className="btn-3d-glass px-4 py-2 flex items-center text-xs font-semibold uppercase tracking-wider text-sky-400 group"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Dashboard
-          </button>
-
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/20 border border-white/20">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-white">Paragraph Reader</h1>
-              <p className="text-xs text-slate-400">Listen & Select Paragraphs for Practice</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-4">
+    <div className="flex-1 overflow-y-auto space-y-4">
           {loading ? (
             <div className="flex flex-col items-center justify-center h-64 text-slate-400 space-y-3">
               <Loader className="w-8 h-8 text-sky-400 animate-spin" />
@@ -120,9 +90,6 @@ const ParagraphReader = () => {
             </div>
           )}
         </div>
-
-      </div>
-    </div>
   );
 };
 

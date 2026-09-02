@@ -83,10 +83,7 @@ const Exam = () => {
   // Screen 1: Countdown Timer Screen
   if (!examStarted) {
     return (
-      <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
-        <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
-        <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
-
+      <div className="flex-1 flex items-center justify-center w-full">
         <div className="w-full max-w-2xl glass-panel-3d p-8 sm:p-12 text-center relative z-10 space-y-6">
           <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-xl shadow-sky-500/30 border border-white/20">
             <Clock className="w-10 h-10 text-white animate-bounce" />
@@ -108,10 +105,7 @@ const Exam = () => {
   // Screen 2: Exam Results Completed View
   if (examCompleted) {
     return (
-      <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
-        <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
-        <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
-
+      <div className="flex-1 flex items-center justify-center w-full">
         <div className="w-full max-w-xl glass-panel-3d p-8 sm:p-10 text-center relative z-10 space-y-6">
           <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-xl shadow-emerald-500/30 border border-white/20">
             <Award className="w-10 h-10 text-white" />
@@ -148,30 +142,7 @@ const Exam = () => {
 
   // Screen 3: Main Exam Questions View
   return (
-    <div className="min-h-screen relative flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
-      <div className="ambient-glow-1 -top-20 -left-20 animate-pulse" />
-      <div className="ambient-glow-2 -bottom-20 -right-20 animate-pulse" />
-
-      <div className="w-full max-w-4xl glass-panel-3d p-6 sm:p-8 lg:p-10 relative z-10 flex flex-col min-h-[640px]">
-        
-        {/* Navigation & Header */}
-        <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
-          <button
-            onClick={() => navigate('/dashboard')}
-            className="btn-3d-glass px-4 py-2 flex items-center text-xs font-semibold uppercase tracking-wider text-sky-400 group"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back
-          </button>
-
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-sky-500/20 border border-white/20">
-              <PenTool className="w-5 h-5 text-white" />
-            </div>
-            <h1 className="text-xl font-extrabold text-white tracking-wide">LSRW EXAM ASSESSMENT</h1>
-          </div>
-        </div>
-
+    <div className="flex-1 flex flex-col w-full h-full">
         {/* Questions Listing */}
         <div className="flex-1 overflow-y-auto pr-2 space-y-6">
           {currentQuestions.map((question, qIdx) => (
@@ -242,7 +213,6 @@ const Exam = () => {
           </button>
         </div>
 
-      </div>
     </div>
   );
 };
